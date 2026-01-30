@@ -48,24 +48,5 @@ def lighting():
     base_env.set_light_off(base.render.find('**/slight_1'))
 
 
-def init_flashlight():
-    """Optional flashlight attached to camera"""
-    base.slight = Spotlight('flashlight')
-    base.slight.set_color(VBase4(3.5, 3.6, 3.8, 1))  # Cool white
-    lens = PerspectiveLens()
-    lens.set_near_far(0.5, 500)
-    base.slight.set_lens(lens)
-    base.slight.set_attenuation((0.5, 0, 0.0005))
-    base.slight.get_lens().set_fov(35)
-    base.slight_node = base.render.attach_new_node(base.slight)
-    base.slight_node.reparent_to(base.cam)
-    base.slight_node.set_pos(0, 0.4, 0.2)
-    base.render.find('**/basic_skybox').set_light_off(base.slight_node)
 
 
-def toggle_flashlight():
-    """Toggle flashlight on/off"""
-    if base.render.has_light(base.slight_node):
-        base.render.set_light_off(base.slight_node)
-    else:
-        base.render.set_light(base.slight_node)
