@@ -2,6 +2,9 @@ from direct.showbase.ShowBase import ShowBase
 from panda3d.core import load_prc_file_data, BitMask32, Vec3, Point3, LVecBase3f
 from panda3d.core import WindowProperties
 import sys
+from panda3d.bullet import BulletWorld, BulletCharacterControllerNode
+from panda3d.bullet import ZUp, BulletCapsuleShape, BulletPlaneShape
+from panda3d.bullet import BulletRigidBodyNode
 
 class app(ShowBase):
     def __init__(self):
@@ -28,9 +31,7 @@ class app(ShowBase):
         self.accept("escape", sys.exit, [0])
         
         # Physics setup
-        from panda3d.bullet import BulletWorld, BulletCharacterControllerNode
-        from panda3d.bullet import ZUp, BulletCapsuleShape, BulletPlaneShape
-        from panda3d.bullet import BulletRigidBodyNode
+
 
         # Lighting setup
         from src import arena_lighting
