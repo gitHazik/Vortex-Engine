@@ -34,6 +34,8 @@ class Game(ShowBase):
         
         # Display instructions
         self._show_instructions()
+        self.my_model = self.load_bam_model("fps.bam")
+
     
     def _setup_window(self):
         """Configure window properties."""
@@ -268,6 +270,11 @@ class Game(ShowBase):
             )
             
             self.debug_text.node().set_text(debug_info)
+    def load_bam_model(self, model_path):
+         model = self.loader.loadModel(model_path)
+         model.reparentTo(self.render)
+         model.setPos(35, -40, 2)
+         return model
     
     def _exit_game(self):
         """Clean exit."""
