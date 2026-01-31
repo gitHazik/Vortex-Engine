@@ -7,9 +7,7 @@ import sys
 
 from src.fps_controller import FPSController
 
-class Game(ShowBase):
-    """Main game application with FPS controller."""
-    
+class Game(ShowBase):    
     def __init__(self):
         # Configure window settings
         load_prc_file_data("", """
@@ -37,61 +35,31 @@ class Game(ShowBase):
 
     
     def _setup_window(self):
-        """Configure window properties."""
         props = WindowProperties()
         props.set_mouse_mode(WindowProperties.M_relative)
         self.win.request_properties(props)
         self.set_background_color(0.53, 0.81, 0.92)  # Sky blue
         
     def _setup_camera(self):
-        """Configure camera settings."""
         self.camLens.set_fov(90)
         self.camLens.set_near_far(0.1, 5000)
         self.disable_mouse()
     
     def _setup_physics(self):
-        """Initialize physics world."""
         self.world = BulletWorld()
         self.world.set_gravity(Vec3(0, 0, -9.81))
     
     def _setup_lighting(self):
-        """Setup scene lighting."""
-        try:
-            from src import arena_lighting
-            arena_lighting.lighting()
-        except ImportError:
-            # Fallback lighting if custom module not available
-            from panda3d.core import AmbientLight, DirectionalLight
-            
-            # Ambient light
-            ambient = AmbientLight('ambient')
-            ambient.set_color((0.3, 0.3, 0.3, 1))
-            ambient_np = self.render.attach_new_node(ambient)
-            self.render.set_light(ambient_np)
-            
-            # Directional light (sun)
-            sun = DirectionalLight('sun')
-            sun.set_color((0.8, 0.8, 0.7, 1))
-            sun_np = self.render.attach_new_node(sun)
-            sun_np.set_hpr(-45, -60, 0)
-            self.render.set_light(sun_np)
+        from src import arena_lighting
+        arena_lighting.lighting()
     
     def _setup_arena(self):
-        """Load and setup the arena with collision."""
-        # Load arena model
-        try:
             self.arena = self.loader.load_model('models/arena_1.bam')
             self.arena.reparent_to(self.render)
             self.arena.set_pos(0, 0, 0)
-            
-            # Create collision mesh from model
             self._create_arena_collision()
-        except:
-            print("Warning: Could not load arena model. Creating fallback ground plane.")
-            self._create_fallback_ground()
     
     def _create_arena_collision(self):
-        """Create collision mesh from arena model."""
         geom_nodes = self.arena.find_all_matches('**/+GeomNode')
         
         if geom_nodes.get_num_paths() > 0:
@@ -117,7 +85,6 @@ class Game(ShowBase):
             self.world.attach_rigid_body(body)
     
     def _create_fallback_ground(self):
-        """Create a simple ground plane as fallback."""
         from panda3d.bullet import BulletPlaneShape
         
         # Create simple ground plane
@@ -154,7 +121,7 @@ class Game(ShowBase):
             sprint_speed=12.0,
             strafe_speed=6.0,
             mouse_sensitivity=0.15,
-            camera_smoothing=0.2,
+            camera_smoothing=0.5,
             jump_height=6.0,
             pitch_limit_up=89,
             pitch_limit_down=-89
@@ -164,9 +131,9 @@ class Game(ShowBase):
         self.fps_controller.setup_controls(self.accept)
     
     def _setup_controls(self):
-        """Setup additional game controls."""
         self.accept("escape", self._exit_game)
         self.accept("f3", self.toggle_wireframe)
+        self.accept("f6", self.toggle_texture)
         self.accept("f1", self._toggle_instructions)
         self.accept("f2", self._toggle_debug_info)
         
@@ -271,7 +238,6 @@ class Game(ShowBase):
             self.debug_text.node().set_text(debug_info)
     
     def _exit_game(self):
-        """Clean exit."""
         self.fps_controller.cleanup()
         sys.exit(0)
 

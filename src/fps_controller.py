@@ -4,22 +4,13 @@ from direct.task import Task
 
 
 class FPSController:
-    """
-    A smooth first-person shooter controller for Panda3D with Bullet physics.
-    
-    Features:
-    - Smooth camera movement with configurable sensitivity
-    - WASD movement with sprint capability
-    - Jump mechanics
-    - Configurable movement speeds and physics
-    """
     
     def __init__(self, world, render, camera, win, mouse_watcher, 
                  spawn_pos=Vec3(0, 0, 5),
                  walk_speed=5.0,
                  sprint_speed=10.0,
                  strafe_speed=5.0,
-                 mouse_sensitivity=0.2,
+                 mouse_sensitivity=0.5,
                  camera_smoothing=0.15,
                  jump_height=5.0,
                  pitch_limit_up=89.0,
@@ -267,6 +258,5 @@ class FPSController:
         self.mouse_sensitivity = sensitivity
     
     def cleanup(self):
-        """Clean up the controller."""
         self.world.remove_character(self.player_node)
         self.player.remove_node()
