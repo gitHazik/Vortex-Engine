@@ -121,7 +121,7 @@ class FPSController:
             # Position it in front of the camera (adjust as needed)
             self.viewmodel.set_pos(0.3, 0.5, -0.4)
             self.viewmodel.set_hpr(0, 180, 180)
-            self.viewmodel.set_scale(0.4)
+            self.viewmodel.set_scale(0.5)
             
     
     def _center_mouse(self):
