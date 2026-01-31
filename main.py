@@ -181,7 +181,9 @@ class Game(ShowBase):
             "F1 - Toggle Help\n"
             "F2 - Toggle Debug\n"
             "F3 - Wireframe\n"
-            "ESC - Exit"
+            "F6 - Toggle Texture\n"
+            "ESC - Exit\n"
+
         )
         text_node.set_align(TextNode.A_left)
         text_node.set_text_color(1, 1, 1, 1)
