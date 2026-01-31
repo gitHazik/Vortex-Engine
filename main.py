@@ -32,7 +32,6 @@ class Game(ShowBase):
         
         # Display instructions
         self._show_instructions()
-
     
     def _setup_window(self):
         props = WindowProperties()
@@ -124,7 +123,9 @@ class Game(ShowBase):
             camera_smoothing=0.5,
             jump_height=6.0,
             pitch_limit_up=89,
-            pitch_limit_down=-89
+            pitch_limit_down=-89,
+            loader=self.loader,  
+            viewmodel_path='fps.bam'
         )
         
         # Setup player controls

@@ -17,7 +17,9 @@ class FPSController:
                  pitch_limit_down=-89.0,
                  capsule_radius=0.75,
                  capsule_height=0.5,
-                 step_height=0.4):
+                 step_height=0.4,
+                 loader=None,
+                 viewmodel_path=None):
         """
         Initialize the FPS controller.
         
@@ -39,12 +41,15 @@ class FPSController:
             capsule_radius: Player capsule radius (default: 0.75)
             capsule_height: Player capsule height (default: 0.5)
             step_height: Maximum step height (default: 0.4)
+            loader: ShowBase loader
+            viewmodel_path: Path to viewmodel mesh (hands + gun)
         """
         self.world = world
         self.render = render
         self.camera = camera
         self.win = win
         self.mouse_watcher = mouse_watcher
+        self.loader = loader
         
         # Movement parameters
         self.walk_speed = walk_speed
@@ -93,8 +98,31 @@ class FPSController:
         self.camera.reparent_to(self.player)
         self.camera.set_pos(0, 0, 0.55)
         
+        # Attach viewmodel if provided
+        self.viewmodel = None
+        if loader and viewmodel_path:
+            self.attach_viewmodel(viewmodel_path)
+        
         # Center mouse initially
         self._center_mouse()
+    
+    def attach_viewmodel(self, model_path):
+        """
+        Attach a viewmodel (hands + gun) to the camera.
+        
+        Args:
+            model_path: Path to your model file (e.g., 'models/hands_gun.egg')
+        """
+        
+        if self.loader:
+            self.viewmodel = self.loader.load_model(model_path)
+            self.viewmodel.reparent_to(self.camera)
+            
+            # Position it in front of the camera (adjust as needed)
+            self.viewmodel.set_pos(0.3, 0.5, -0.4)
+            self.viewmodel.set_hpr(0, 180, 180)
+            self.viewmodel.set_scale(0.4)
+            
     
     def _center_mouse(self):
         """Center the mouse pointer in the window."""
