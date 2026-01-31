@@ -3,7 +3,6 @@ from panda3d.core import load_prc_file_data, BitMask32, Vec3
 from panda3d.core import WindowProperties
 from panda3d.bullet import BulletWorld, BulletRigidBodyNode
 from panda3d.bullet import BulletTriangleMesh, BulletTriangleMeshShape
-from direct.actor.Actor import Actor
 import sys
 
 from src.fps_controller import FPSController
@@ -35,7 +34,6 @@ class Game(ShowBase):
         
         # Display instructions
         self._show_instructions()
-        self.my_model = self.load_bam_model("fps.bam")
 
     
     def _setup_window(self):
@@ -271,18 +269,6 @@ class Game(ShowBase):
             )
             
             self.debug_text.node().set_text(debug_info)
-    
-    def load_bam_model(self, model_path):
-        """Load weapon model with animations using Actor."""
-        # Load as Actor to enable animations
-        weapon = Actor(model_path)
-        weapon.reparentTo(self.render)
-        weapon.setPos(35, -40, 2)
-        
-        # Loop the reload animation forever
-        weapon.loop("Armature|A_Fire")
-        
-        return weapon
     
     def _exit_game(self):
         """Clean exit."""
