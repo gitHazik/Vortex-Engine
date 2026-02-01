@@ -84,6 +84,6 @@ Expect rough edges, rewrites, and instability.
 ## License
 
 License not finalized yet.
-Assume **no permission for commercial use** until explicitly stated.
+
 
 ---
