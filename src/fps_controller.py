@@ -25,7 +25,8 @@ class FPSController:
         
         Args:
             world: BulletWorld instance
-            render: ShowBase render node
+            render: ShowBase r
+            ender node
             camera: ShowBase camera node
             win: ShowBase window
             mouse_watcher: ShowBase mouseWatcherNode
