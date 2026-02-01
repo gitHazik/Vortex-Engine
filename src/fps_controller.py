@@ -107,12 +107,7 @@ class FPSController:
         self._center_mouse()
     
     def attach_viewmodel(self, model_path):
-        """
-        Attach a viewmodel (hands + gun) to the camera.
-        
-        Args:
-            model_path: Path to your model file (e.g., 'models/hands_gun.egg')
-        """
+
         
         if self.loader:
             self.viewmodel = self.loader.load_model(model_path)
