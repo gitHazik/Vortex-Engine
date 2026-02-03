@@ -10,16 +10,16 @@ def lighting():
     base.render.set_light(amb_light_node)
 
     # Main spotlight
-    # slight_1 = Spotlight('slight_1')
-    # slight_1.set_color(Vec4(0.3, 0.3, 0.25, 1))  # Very low intensity
-    # slight_1.set_shadow_caster(True, 4096, 4096) 
-    # slight_1.set_lens(PerspectiveLens())
-    # slight_1.get_lens().set_fov(180)
-    # slight_1.get_lens().set_near_far(1, 400)  # Limit range
-    # slight_1_node = base.render.attach_new_node(slight_1)
-    # slight_1_node.set_pos(69, -49, 90)
-    # slight_1_node.look_at(0, 0, 0.5)
-    # base.render.set_light(slight_1_node)
+    slight_1 = Spotlight('slight_1')
+    slight_1.set_color(Vec4(0.3, 0.3, 0.25, 1))  # Very low intensity
+    slight_1.set_shadow_caster(True, 4096, 4096) 
+    slight_1.set_lens(PerspectiveLens())
+    slight_1.get_lens().set_fov(180)
+    slight_1.get_lens().set_near_far(1, 400)  # Limit range
+    slight_1_node = base.render.attach_new_node(slight_1)
+    slight_1_node.set_pos(69, -49, 90)
+    slight_1_node.look_at(0, 0, 0.5)
+    base.render.set_light(slight_1_node)
     
     # Secondary spotlight
     slight_2 = Spotlight('slight_2')
