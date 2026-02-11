@@ -1,6 +1,6 @@
 # Vortex Engine 🌪️
 
-**Vortex Engine** is an experimental, high-quality **3D custom rendering engine** written in **Python**, built on top of **Panda3D**.
+**Vortex Engine** is an experimental, high-quality **3D custom rendering engine** written in **Python**, built on top of **Panda3D**
 
 The goal of this project is to explore how far a modern rendering pipeline can be pushed using Python—focusing on rendering quality, engine architecture, and low-level control rather than rapid game development.
 
