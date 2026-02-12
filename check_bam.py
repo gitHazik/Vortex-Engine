@@ -1,4 +1,4 @@
-#AI generated
+
 from direct.showbase.ShowBase import ShowBase
 from direct.actor.Actor import Actor
 
