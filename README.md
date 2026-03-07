@@ -39,7 +39,8 @@ This is primarily a **learning, research, and experimentation project**, not a p
 * No release builds
 * Features may be incomplete, disabled, or broken
 
-Development is paused to rethink architecture, scope, and long-term direction.
+Development is paused to rethink architecture, scope, and long-term direction
+
 
 ---
 
